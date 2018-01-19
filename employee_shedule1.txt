@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Loyalty Methods</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<!-- *******************************************************  BODY  ************************************************************************ -->
+
+<body>
+				
+			<?php include 'header.php'?>
+			<?php include 'conn.php'?>
+			
+			
+		<div id="background">
+		<div id="page">
+			<div id="contents">
+				<div class="box">
+					<div>
+					
+						<div class="body">
+				
+				
+				<h2><u>Today's Shift Schedule</u></h2>
+								<ul>
+									<li>
+										<h3>People  in office and involved in starbucks on <?php echo date('Y-m-d')?></h3>
+										<span></span>
+									
+										
+										<table cellpadding=15px border=1>		
+									<tbody>
+									<th> Shift_Date</th> <th> Shift_Timinigs</th><th>Notes</th>
+										<?php 									
+										$qry="select `shift_date`,`shift_timings`,`Comments` from `shiftschedule` where `lmid`='".$_POST['lmid']."' and DATE_FORMAT(shift_date, '%Y-%m') = '".$_POST['year']."-".$_POST['month']."' ORDER BY `shift_date`";
+
+										// echo $qry;
+										$resset=mysqli_query($conn,$qry);
+										
+                                          while($row=mysqli_fetch_assoc($resset)){
+											  echo "<tr> <td>{$row['shift_date']}</td> <td>{$row['shift_timings']}</td><td>{$row['Comments']}</td>
+											 </tr>";
+											  
+											 
+										  }
+																			
+										
+										?>
+									</tbody>
+									
+									
+									</table>
+								
+								
+						
+				
+				
+				
+				
+						
+									</li>
+									
+									</ul>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+					</div>
+
+</body>
+</html>
+				
+				
+				
+				
+				
+				<?php 
+				// echo "select * from `shiftschedule`  where DATE_FORMAT(shift_date, '%Y-%m') = '10-2012'";		
+				?>

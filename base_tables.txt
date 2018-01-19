@@ -1,0 +1,330 @@
+CREATE TABLE IF NOT EXISTS `checklist` (
+  `cl_id` int(10) NOT NULL AUTO_INCREMENT,
+  `time` varchar(10) NOT NULL,
+  `task_desc` varchar(1000) NOT NULL,
+  `remedy` varchar(2000) NOT NULL,
+  PRIMARY KEY (`cl_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `checklist`
+--
+
+INSERT INTO `checklist` (`cl_id`, `time`, `task_desc`, `remedy`) VALUES
+(1, '12:30 am', 'Health Check Mail', 'wait for next health check i.e 02:30 am,if that is also not receieved in time escalate it to CRM DEV'),
+(2, '2:30 am', 'Health Check Mail', 'wait for next health check i.e 04:30 am,if that is also not receieved in time escalate it to CRM DEV');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `checklist_log`
+--
+
+CREATE TABLE IF NOT EXISTS `checklist_log` (
+  `cll_id` int(10) NOT NULL AUTO_INCREMENT,
+  `cl_id` int(10) NOT NULL,
+  `exp_time` varchar(10) NOT NULL,
+  `arr_time` varchar(10) NOT NULL,
+  `verified_by` varchar(50) NOT NULL,
+  `comments` varchar(1000) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`cll_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `checklist_log`
+--
+
+INSERT INTO `checklist_log` (`cll_id`, `cl_id`, `exp_time`, `arr_time`, `verified_by`, `comments`, `status`, `date`) VALUES
+(1, 1, '12:30 am', '', '', '', '', '2016-03-28'),
+(2, 2, '02:30 am', '', '', '', '', '2016-03-28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE IF NOT EXISTS `contacts` (
+  `name` varchar(50) NOT NULL,
+  `mobile` varchar(15) NOT NULL,
+  `tier` varchar(2) NOT NULL,
+  `project` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  PRIMARY KEY (`mobile`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`name`, `mobile`, `tier`, `project`, `email`) VALUES
+('test1', '5265636589', '1', '', 'test@test.com'),
+('abhishi6', '695689565', '2', 'loyalty', 'asingh@starbuck6s.com'),
+('abhishik', '6956895652', '3', 'loyalty', 'asingh@starbucks.com'),
+('abhishi2', '6956895655', '2', 'loyalty', 'asingh@starbuck2s.com'),
+('abhishi3', '6956895656', '1', 'exadata', 'asingh@starbuck3s.com'),
+('bharagav1', '9658965842', '1', 'GSIT', 'pkisusu@sytn.com1'),
+('DJ see SG NY', '1234567890', '2', 'LOYALTY', 'Asfg@sbg.crf'),
+('', 'asf', '1', 'Default', 'asfasf'),
+('qwertyuiopppppppp', 'qwertyuiopppppp', '2', 'Default', 'wijefsdnflskdmfslk'),
+('sri', '', '1', 'Default', 'sri.shyamala@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employ`
+--
+
+CREATE TABLE IF NOT EXISTS `employ` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `lmid` varchar(20) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `mobile` varchar(15) NOT NULL,
+  `project` varchar(50) NOT NULL,
+  `Team_id` varchar(50) NOT NULL,
+  `shiftsapplicable` varchar(50) NOT NULL,
+  `email_id` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `lmid` (`lmid`),
+  UNIQUE KEY `mobile` (`mobile`),
+  UNIQUE KEY `email_id` (`email_id`),
+  KEY `Team_id` (`Team_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+
+--
+-- Dumping data for table `employ`
+--
+INSERT INTO `employ` (`id`, `lmid`, `name`, `mobile`, `project`, `Team_id`, `shiftsapplicable`, `email_id`) VALUES
+
+(1, 'RYTH0081', 'Bindu Maheswari', '9700267388', 'LOYALTY', '1', '', 'bkarimikonda@rythmos.com'),
+(2, 'RYTH0166', 'SUSMITHA SAMALETI', '9550542813', 'GSIT', '1', '', 'ssamaleti@rythmos.com'),
+
+(3, 'RYTHT0222', 'SWAROOP REDDY', '7799214444', 'LOYALTY', '6', '', 'sreddy@rythmos.com'),
+(4, 'RYTHT0223', 'CHETHAN NAGARAJU', '8790966336', 'GSIT', '6', '', 'cnagaraju@rythmos.com'),
+(5, 'RYTHT0226', 'MADHAV REDDY', '9000367313', 'LOYALTY', '6', '', 'mnimma@rythmos.com'),
+
+(6, 'RYTH0099', 'MANOJ THEEGALA', '9700863858', 'LOYALTY', '2', '', 'mtheegala@rythmos.com'),
+(7, 'RYTH0139', 'NAVEEN KURELLA', '9700919120', 'GSIT', '2', '', 'nkurella@rythmos.com'),
+(8, 'RYTH0176', 'PAVAN YALLAPRAGADA', '9618175151', 'LOYALTY', '2', '', 'vyallapragada@rythmos.com'),
+
+(9, 'RYTH0100', 'RAJASHEAKER INNUKOLLU', '8686923692', 'LOYALTY', '3', '', 'rinnukollu@rythmos.com'),
+(10,'RYTH0079', 'SOMAYAJULU', '9676308134', 'GSIT', '3', '', 'ssurikuchi@rythmos.com'),
+(11,'RYTH0138', 'BHARGAV NALAJALA', '9963001101', 'LOYALTY', '3', '', 'bnalajala@rythmos.com.com'),
+
+(12, 'RYTH0104', 'SIVA PRASAD PADHI', '8985897504', 'LOYALTY', '4', '', 'spadhi@rythmos.com'),
+(13, 'RYTH0_SPL', 'REVAAN KUMAR', '9533897392', 'LOYALTY', '4', '', 'rkmodala@rythmos.com'),
+(14, 'RYTH0165', 'Praneeth Sesham', '9000947944', 'GSIT', '4', '', 'psesham@rythmos.com'),
+
+
+(15, 'RYTH0103', 'PRASANTH KUSUMARAJU', '9908818831', 'LOYALTY', '5', '', 'pkusumaraju@rythmos.com'),
+(16, 'RYTH0148', 'NAVEEN KUMAR PASUPULETI', '8008165658', 'GSIT', '5', '', 'npasupuleti@rythmos.com'),
+(17, 'RYTH0182', 'ANURAG REDDY', '9666644139', 'LOYALTY', '5', '', 'akanchimireddy@rythmos.com'),
+(18, 'test1', 'PRASANTH-TEST', 'test1', 'LOYALTY', '5', '', 'test1@loyaltymethods.com');
+
+
+CREATE TABLE IF NOT EXISTS `shiftschedule` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `shift_id` varchar(20) NOT NULL,
+  `lmid` varchar(15) NOT NULL,
+  `shift_date` date NOT NULL,
+  `shift_timings` varchar(50) NOT NULL,
+  `Comments` varchar(200) NOT NULL,
+  `othres_shift` varchar(10) NOT NULL,
+  `isbux` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `lmid` (`lmid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21732 ;
+
+
+
+INSERT INTO `shiftschedule` (`id`, `shift_id`, `lmid`, `shift_date`, `shift_timings`, `Comments`, `othres_shift`, `isbux`) VALUES
+(1, '1|1|4', 'RYTH0081', '2016-07-01', '08:00 - 17:00', '', '', 'yes'),
+(2, '1|1|4', 'RYTH0166', '2016-07-01', '08:00 - 17:00', '', '', 'yes'),
+
+(3, '6|1|4', 'RYTHT0222', '2016-07-01', '09:00 - 06:00', '', '', 'no'),
+(4, '6|1|4', 'RYTHT0223', '2016-07-01', '09:00 - 06:00', '', '', 'no'),
+(5, '6|1|4', 'RYTHT0226', '2016-07-01', '09:00 - 06:00', '', '', 'no'),
+
+(6, '3|1|4', 'RYTH0099', '2016-07-01', '23:00 - 08:00', '', '', 'yes'),
+(7, '3|1|4', 'RYTH0139', '2016-07-01', '23:00 - 08:00', '', '', 'yes'),
+(8, '3|1|4', 'RYTH0176', '2016-07-01', '23:00 - 08:00', '', '', 'yes'),
+
+(9, '5|1|4', 'RYTH0100', '2016-07-01', '14:00 - 23:00', '', '', 'yes'),
+(10, '5|1|4', 'RYTH0079', '2016-07-01', '14:00 - 23:00', '', '', 'yes'),
+(11, '5|1|4', 'RYTH0138', '2016-07-01', '14:00 - 23:00', '', '', 'yes'),
+
+(12, '4|1|4', 'RYTH0104', '2016-07-01', '09:00 - 06:00', '', '', 'no'),
+(13, '4|1|4', 'RYTH0_SPL', '2016-07-01', '09:00 - 06:00', '', '', 'no'),
+(14, '4|1|4', 'RYTH0165', '2016-07-01', '09:00 - 06:00', '', '', 'no'),
+
+
+(15, '2|1|4', 'RYTH0103', '2016-07-01', '09:00 - 06:00', '', '', 'no'),
+(16, '2|1|4', 'RYTH0148', '2016-07-01', '09:00 - 06:00', '', '', 'no'),
+(17, '2|1|4', 'RYTH0182', '2016-07-01', '09:00 - 06:00', '', '', 'no'),
+(18, '2|1|4', 'test1', '2016-07-01', '09:00 - 06:00', '', '', 'no');
+
+
+
+
+--
+-- Table structure for table `issues`
+--
+
+CREATE TABLE IF NOT EXISTS `issues` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `issue_created_date` varchar(30) NOT NULL,
+  `issue_summary` varchar(1000) NOT NULL,
+  `issue_description` varchar(10000) NOT NULL,
+  `issue_status` varchar(10) NOT NULL,
+  `issue_closed_date` varchar(30) NOT NULL,
+  `updates` mediumtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+--
+-- Dumping data for table `issues`
+--
+
+INSERT INTO `issues` (`id`, `issue_created_date`, `issue_summary`, `issue_description`, `issue_status`, `issue_closed_date`, `updates`) VALUES
+(1, '20-04-2016 01:53 AM IST', 'test 1', 'test 1 description', 'closed', '', '2016-04-27 12:55:15 --> closed issue|2016-04-27 12:54:30 --> update 4|2016-04-27 12:54:16 --> update3|2016-04-27 12:54:09 --> update 2|2016-04-27 12:54:03 --> update1|'),
+(2, '20-04-2016 01:53 AM IST', 'test 2', 'test 2 description', 'closed', '', '2016-04-27 05:20:38 --> closed update|2016-04-27 05:20:18 --> update 4|2016-04-27 06:11:34 --> update3|2016-04-27 06:11:28 --> update 2|2016-04-27 06:11:22 --> update1|'),
+(3, '20-04-2016 01:53 AM IST', 'test 3', 'test 3 description', 'open', '', ''),
+(4, '2016-04-27 06:34:41', 'test5', 'test 5 description', 'closed', '', '2016-04-27 06:36:01 --> update 5 2|update 5 1'),
+(5, '2016-04-28 04:58:24', 'issue 6', 'ISSUE DESCRIPTION', 'open', '', '2016-04-28 04:58:37 --> UPDATE 5|2016-04-28 04:58:24 --> ISSUE UPDATE'),
+(6, '2016-05-05 04:04:31', 'issue 6', 'issue update', 'open', '', '2016-05-05 04:04:31 --> akjdhakjdhasdasdas'),
+(7, '2016-06-26 03:25:57', 'Fern Seth', 'Jx sry HD see TJ', 'open', '', '2016-06-26 03:25:57 --> HF dr DJ it XY we'),
+(8, '2016-07-11 04:49:26', 'srii', 'adfgjknjhhjn', 'open', '', '2016-07-11 04:49:26 --> hgbmn '),
+(9, '2016-07-11 04:51:24', 'fasdasdas', 'sdasdfasdasd', 'open', '', '2016-07-11 04:51:24 --> sdsdasfafa'),
+(10, '2016-07-11 04:55:07', 'hjbda', 'nbsndnn', 'open', '', '2016-07-11 04:55:07 --> hsdbfjd'),
+(11, '2016-07-11 04:55:34', 'si', 'sdd', 'open', '', '2016-07-11 04:55:34 --> ded'),
+(12, '2016-07-11 04:55:56', 'scadsad', 'jdddd', 'open', '', '2016-07-11 04:55:56 --> dfdfd'),
+(13, '2016-07-11 04:56:20', 'wdadasdad', 'wdefef', 'open', '', '2016-07-11 04:56:20 --> edadad'),
+(14, '2016-07-11 04:56:41', 'dssd', 'asdad', 'open', '', '2016-07-11 04:56:41 --> dasfefe');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shifts`
+--
+
+CREATE TABLE IF NOT EXISTS `shifts` (
+  `shift_id` int(10) NOT NULL AUTO_INCREMENT,
+  `shiftname` varchar(20) NOT NULL,
+  `mon` varchar(20) NOT NULL,
+  `tue` varchar(20) NOT NULL,
+  `wed` varchar(20) NOT NULL,
+  `thu` varchar(20) NOT NULL,
+  `fri` varchar(20) NOT NULL,
+  `sat` varchar(20) NOT NULL,
+  `sun` varchar(20) NOT NULL,
+  `monis` varchar(5) NOT NULL,
+  `tueis` varchar(5) NOT NULL,
+  `wedis` varchar(5) NOT NULL,
+  `thuis` varchar(5) NOT NULL,
+  `friis` varchar(5) NOT NULL,
+  `satis` varchar(5) NOT NULL,
+  `sunis` varchar(5) NOT NULL,
+  `monsa` varchar(5) NOT NULL DEFAULT '0',
+  `tuesa` varchar(5) NOT NULL DEFAULT '0',
+  `wedsa` varchar(5) NOT NULL DEFAULT '0',
+  `thusa` varchar(5) NOT NULL DEFAULT '0',
+  `frisa` varchar(5) NOT NULL DEFAULT '0',
+  `satsa` varchar(5) NOT NULL DEFAULT '0',
+  `sunsa` varchar(5) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`shift_id`),
+  UNIQUE KEY `shiftname` (`shiftname`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `shifts`
+--
+
+INSERT INTO `shifts` (`shift_id`, `shiftname`, `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`, `monis`, `tueis`, `wedis`, `thuis`, `friis`, `satis`, `sunis`, `monsa`, `tuesa`, `wedsa`, `thusa`, `frisa`, `satsa`, `sunsa`) VALUES
+(1, 'General', '08:00 - 17:00', '08:00 - 17:00', '08:00 - 17:00', '08:00 - 17:00', '08:00 - 17:00', '00:00 - 00:00', '00:00 - 00:00', 'yes', 'yes', 'yes', 'yes', 'yes', 'no', 'no', '0', '0', '0', '0', '0', '0', '0'),
+(2, 'Weekend_Night', '00:00 - 00:00', '00:00 - 00:00', '00:00 - 00:00', '09:00 - 06:00', '09:00 - 06:00', '20:00 - 08:00', '20:00 - 08:00', 'no', 'no', 'no', 'no', 'no', 'yes', 'yes', '0', '0', '0', '0', '0', '275', '275'),
+(3, 'Reg_Night', '23:00 - 08:00', '23:00 - 08:00', '23:00 - 08:00', '23:00 - 08:00', '23:00 - 08:00', '00:00 - 00:00', '00:00 - 00:00', 'yes', 'yes', 'yes', 'yes', 'yes', 'no', 'no', '275', '275', '275', '275', '275', '0', '0'),
+(4, 'Weekend_Morning', '00:00 - 00:00', '00:00 - 00:00', '00:00 - 00:00', '09:00 - 06:00', '09:00 - 06:00', '08:00 - 20:00', '08:00 - 20:00', 'no', 'no', 'no', 'no', 'no', 'yes', 'yes', '0', '0', '0', '0', '0', '175', '175'),
+(5, 'Reg_Afternoon', '14:00 - 23:00', '14:00 - 23:00', '14:00 - 23:00', '14:00 - 23:00', '14:00 - 23:00', '00:00 - 00:00', '00:00 - 00:00', 'yes', 'yes', 'yes', 'yes', 'yes', 'no', 'no', '175', '175', '175', '175', '175', '0', '0'),
+(7, '', '02:15 - 10:00', '02:15 - 10:00', '02:15 - 10:00', '02:15 - 10:00', '02:15 - 10:00', '02:15 - 10:00', '02:15 - 10:00', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', '0', '0', '0', '0', '0', '0', '0'),
+(8, 'night shifts', '02:15 - 10:00', '02:15 - 10:00', '02:15 - 10:00', '02:15 - 10:00', '02:15 - 10:00', '02:15 - 10:00', '02:15 - 10:00', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', '0', '0', '0', '0', '0', '0', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shiftschedule`
+--
+
+CREATE TABLE IF NOT EXISTS `shiftschedule` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `shift_id` varchar(20) NOT NULL,
+  `lmid` varchar(15) NOT NULL,
+  `shift_date` date NOT NULL,
+  `shift_timings` varchar(50) NOT NULL,
+  `Comments` varchar(200) NOT NULL,
+  `othres_shift` varchar(10) NOT NULL,
+  `isbux` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `lmid` (`lmid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8178 ;
+
+--
+-- Dumping data for table `shiftschedule`
+--
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teams`
+--
+
+CREATE TABLE IF NOT EXISTS `teams` (
+  `team_id` int(11) NOT NULL AUTO_INCREMENT,
+  `team_name` varchar(50) NOT NULL,
+  `shifts_applicable` varchar(50) NOT NULL,
+  `shifts_start_date` varchar(50) NOT NULL,
+  `starting_shift_id` varchar(50) NOT NULL,
+  PRIMARY KEY (`team_id`),
+  UNIQUE KEY `team_name` (`team_name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `teams`
+--
+
+INSERT INTO `teams` (`team_id`, `team_name`, `shifts_applicable`, `shifts_start_date`, `starting_shift_id`) VALUES
+(1, 'T1', '1', '2016-07-01', '1|1|4'),
+(2, 'T2', '2|3|4|5', '2016-07-01', '3|1|4'),
+(3, 'T3', '2|3|4|5', '2016-07-01', '5|1|4'),
+(4, 'T4', '2|3|4|5', '2016-07-01', '4|1|4'),
+(5, 'T5', '2|3|4|5', '2016-07-01', '2|1|4');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wiki`
+--
+
+CREATE TABLE IF NOT EXISTS `wiki` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `instance` varchar(100) NOT NULL,
+  `issue_summary` varchar(10000) NOT NULL,
+  `issue_resolution` mediumtext NOT NULL,
+  `keywords` mediumtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `wiki`
+--
+
+INSERT INTO `wiki` (`id`, `instance`, `issue_summary`, `issue_resolution`, `keywords`) VALUES
+(1, 'psbu65', 'health check error', 'verifty if any batch got failed', 'batch, ftd,eim,skustg'),
+(2, 'PSBU62', 'HEALTH CHECK ERROR', 'USE THE FOLLOWING QUERY................', 'EIM,SKU......'),
+(3, 'PSBU62', 'HEALTH CHECK ERROR', 'USE THE FOLLOWING QUERY................', 'EIM,SKU......');
+
+
